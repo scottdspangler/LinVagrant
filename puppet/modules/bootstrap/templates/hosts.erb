@@ -1,0 +1,17 @@
+127.0.0.1   localhost
+127.0.1.1   <%= @host -%> <%= @host %>.<%= @domain %> 
+<%- if @alt_hosts.is_a? (Array) %><%- @alt_hosts.each_with_index do |alt_host,idx| -%>
+<%= "127.0.#{idx+2}.1   #{alt_host} #{alt_host}.#{@domain}" %>
+<%- end -%><%- elsif @alt_hosts != '' -%>
+<%= "127.0.2.1   #{@alt_hosts} #{@alt_hosts}.#{@domain}" -%>
+<%- end -%>
+<%- if @alt_doms.is_a? (Array) %><%- @alt_doms.each_with_index do |alt_dom,idx| -%>
+<%= "127.#{idx+1}.0.1   #{alt_dom}" %>
+<%- end -%><%- elsif @alt_doms != '' -%>
+<%= "127.1.0.1   #{alt_doms}" %>
+<%- end -%>
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
