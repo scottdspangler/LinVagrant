@@ -1,0 +1,7 @@
+:backends:
+    - json
+:json:
+    :datadir: /vagrant/puppet/hiera
+:hierarchy:
+    - "node/%{::hostname}"
+    - common
